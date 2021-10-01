@@ -12,6 +12,9 @@ const iconsMap = {
 const Login = () => {
   const { activatingConnector, setActivatingConnector } = useAppState()
   const { connector, activate } = useWeb3React()
+
+  console.log('connector', connector)
+
   return (
     <Flex sx={{ justifyContent: 'center' }}>
       {Object.keys(connectorsByName).map((name: string) => {
@@ -25,7 +28,7 @@ const Login = () => {
             mr={2}
             variant="connect"
             sx={{
-              borderColor: activating ? 'orange' : connected ? 'green' : 'unset',
+              borderColor: activating ? 'orange' : connected ? 'green' : 'blueSea',
               position: 'relative',
               maxWidth: 250,
             }}

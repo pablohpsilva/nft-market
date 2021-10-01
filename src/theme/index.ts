@@ -36,6 +36,15 @@ export const Palette = {
   transparent: 'transparent',
   white20: 'rgba(255, 255, 255, .2)',
   black66: 'rgba(0, 0, 0, .66)',
+  // New Pallet
+  fog: '#fbfdff',
+  fogDense: '#E5E8EB',
+  darkSea: '#1868B7',
+  blueSea: '#2081E2',
+  marinaBlue: '#E2E6EF',
+  aqua: '#2BCDE4',
+  graphite: '#04111e',
+  concrete: '#434d55',
 }
 
 export type PaletteKeys = keyof typeof Palette
@@ -170,6 +179,10 @@ export default {
       variant: 'buttons.tertiary',
       py: 4,
       px: 5,
+      borderWidth: 2,
+      borderStyle: 'solid',
+      backgroundColor: 'transparent',
+      color: 'blueSea',
     },
   },
   fontWeights: {
@@ -261,6 +274,7 @@ export default {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
+      backgroundColor: 'fog',
     },
     a: {
       color: 'primary',

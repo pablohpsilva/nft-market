@@ -1,5 +1,5 @@
 import { useHistory, useLocation } from 'react-router'
-import { Box, NavLink, Flex, Heading, Image, Text } from 'theme-ui'
+import { Box, NavLink, Flex, Heading, Image } from 'theme-ui'
 import { useAppState } from '../../state'
 import { UserMenu } from '..'
 
@@ -14,18 +14,18 @@ const Header = () => {
   const { user, isAuthenticated } = useAppState()
 
   return (
-    <Box bg="black">
+    <Box bg="fog" sx={{ boxShadow: 'rgb(4 17 29 / 25%) 0px 0px 8px 0px' }}>
       <Flex sx={{ alignItems: 'center', p: 3 }} as="nav">
         <Image
           onClick={() => {
             history.push('/')
           }}
           sx={{ width: 50, cursor: 'pointer' }}
-          src="/static/logo.png"
+          src="/static/logo.svg"
         />
-        <Heading sx={{ ml: [1, 2], color: 'white' }} as="h4">
-          ERC721 Marketplace{' '}
-          <Text sx={{ display: ['none', 'block'] }}>+ OpenSea.io on Rinkeby Network</Text>
+        <Heading sx={{ ml: [1, 2], color: 'graphite', fontWeight: 'bold' }} as="h4">
+          Jasmin Marketplace
+          {/* <Text sx={{ display: ['none', 'block'] }}>+ OpenSea.io on Rinkeby Network</Text> */}
         </Heading>
         <UserMenu />
       </Flex>

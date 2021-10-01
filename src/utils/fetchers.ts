@@ -8,7 +8,7 @@ export const fetcherETHUSD = async (url: string) => {
       result: { ethusd },
     } = await (await fetch(url)).json()
     setEthPrice(ethusd)
-  } catch (e) {
+  } catch (e: any) {
     console.log(e)
   }
 }
@@ -16,7 +16,7 @@ export const fetcherETHUSD = async (url: string) => {
 export const fetcherMetadata = async (url: string) => {
   try {
     return await (await fetch(url)).json()
-  } catch (e) {
+  } catch (e: any) {
     return { error: e.message }
   }
 }
@@ -27,7 +27,7 @@ export const fetchOwner = async (id: string) => {
     if (!contract) throw new Error('Contract not found')
 
     return await contract?.ownerOf(id)
-  } catch (e) {
+  } catch (e: any) {
     return { error: e.message }
   }
 }

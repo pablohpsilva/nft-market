@@ -10,8 +10,6 @@ export function useEagerConnect() {
   const [tried, setTried] = useState(false)
 
   useEffect(() => {
-    // console.log(connector)
-
     // if (connector === walletconnect) {
     //   walletconnect.on(URI_AVAILABLE, uri => {
     //     console.log(uri)
