@@ -69,8 +69,12 @@ const Connect: FC = ({ children }) => {
     <>
       {error ? (
         <Container>
-          <Heading as="h2">❌ Something is not right</Heading>
-          <Text sx={{ mt: 3 }}>{getErrorMessage(error)}</Text>
+          <Heading as="h2" color="concrete">
+            ❌ Something is not right
+          </Heading>
+          <Text color="concrete" sx={{ mt: 3 }}>
+            {getErrorMessage(error)}
+          </Text>
         </Container>
       ) : (
         children

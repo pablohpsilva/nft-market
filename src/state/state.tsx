@@ -48,6 +48,8 @@ const useAppState = create<StateContext>((set, get) => ({
         switch (id) {
           case 1337:
             return 5777
+          case 43112:
+            return 4
           default:
             return id
         }

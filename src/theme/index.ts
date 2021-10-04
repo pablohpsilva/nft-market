@@ -220,6 +220,7 @@ export default {
       fontWeight: 'body',
       lineHeight: 'body',
       fontSize: 1,
+      color: 'concrete',
     },
     heading: {
       py: 2,
@@ -233,7 +234,6 @@ export default {
       lineHeight: 2,
       fontSize: 2,
       letterSpacing: 0.44,
-      color: 'white',
     },
     h1: {
       fontFamily: 'heading',
@@ -275,6 +275,7 @@ export default {
       lineHeight: 'body',
       fontWeight: 'body',
       backgroundColor: 'fog',
+      color: 'concrete',
     },
     a: {
       color: 'primary',

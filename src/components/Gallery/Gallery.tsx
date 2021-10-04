@@ -2,7 +2,7 @@ import { BigNumber, utils } from 'ethers'
 import { useCallback, useEffect, useState } from 'react'
 import { Box, Button, Flex, Grid, Heading } from 'theme-ui'
 import { useAppState } from '../../state'
-import { Token } from '..'
+import { TokenPretty as Token } from '..'
 
 export type GalleryProps = {}
 type StateOrder = 'price' | 'alpha'

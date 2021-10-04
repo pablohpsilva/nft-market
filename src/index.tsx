@@ -7,6 +7,10 @@ import reportWebVitals from './reportWebVitals'
 import { Root } from './layout'
 import theme from './theme'
 
+const { REACT_APP_SERVICE_URL } = process.env
+
+console.log('REACT_APP_SERVICE_URL', REACT_APP_SERVICE_URL)
+
 Sentry.init({
   dsn: 'https://06951a956c7a4a6db2f776b1bc697efd@o72860.ingest.sentry.io/5842491',
   integrations: [new Integrations.BrowserTracing()],

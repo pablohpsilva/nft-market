@@ -17,13 +17,13 @@ const Profile = () => {
       <Heading as="h1">My Profile</Heading>
       <Grid columns={['1fr', '1fr 1fr']} sx={{ overflow: 'hidden', gap: '0 20px' }}>
         <Box>
-          <Heading as="h4" sx={{ color: 'green' }}>
+          <Heading as="h4" color="blueSea" sx={{ fontWeight: 'bold' }}>
             Address
           </Heading>
           <Text>{address}</Text>
         </Box>
         <Box>
-          <Heading as="h4" sx={{ color: 'green' }}>
+          <Heading as="h4" color="blueSea" sx={{ fontWeight: 'bold' }}>
             Balance
           </Heading>
           <Text>Ξ {balance}</Text>

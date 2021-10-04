@@ -45,9 +45,8 @@ const Login = () => {
                 src={iconsMap[name as keyof typeof connectorsByName]}
               />
             )}
-
             {name}
-            {activating && <Spinner size={20} color="white" sx={{ ml: 3 }} />}
+            {activating && <Spinner size={20} color="orange" sx={{ ml: 3 }} />}
           </Button>
         )
       })}

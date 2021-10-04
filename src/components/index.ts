@@ -1,4 +1,5 @@
 export * from './Token'
+export * from './TokenPretty'
 export * from './Header'
 export * from './Gallery'
 export * from './ContractDetails'
