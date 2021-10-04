@@ -51,12 +51,12 @@ export const Palette = {
 export type PaletteKeys = keyof typeof Palette
 
 export const Shadows = {
-  simple: 'rgb(4 17 29 / 25%) 0px 0px 8px 0px'
+  simple: 'rgb(4 17 29 / 25%) 0px 0px 8px 0px',
 }
 
 export const Transitions = {
   timing: '.3s',
-  easeAll: 'all ease .3s'
+  easeAll: 'all ease .3s',
 }
 
 export const Sizes = {
@@ -96,8 +96,8 @@ export default {
       padding: 2,
       '&:hover': {
         boxShadow: Shadows.simple,
-        transition: Transitions.easeAll
-      }
+        transition: Transitions.easeAll,
+      },
     },
     transaction: {
       bg: 'amber',
@@ -220,7 +220,7 @@ export default {
     ...Palette,
   },
   shadows: {
-    ...Shadows
+    ...Shadows,
   },
   divider: {
     nft: {
