@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { Flex, Button, Spinner, Image } from 'theme-ui'
 import { useWeb3React } from '@web3-react/core'
@@ -10,17 +11,50 @@ const iconsMap = {
 }
 
 const Login = () => {
-  const { activatingConnector, setActivatingConnector } = useAppState()
+  const {
+    isAuthenticated,
+    activatingConnector,
+    setActivatingConnector,
+    wallet,
+    setWallet,
+    library,
+  } = useAppState()
   const { connector, activate } = useWeb3React()
+
+  console.log('library', library)
+
+  const handleWalletConnection = (currentConnector: any, name: string) => () => {
+    setActivatingConnector(currentConnector)
+    activate(connectorsByName[name as keyof typeof connectorsByName] as AbstractConnector)
+    setWallet(name)
+  }
+
+  const getConnectorInfo = (name: string) => {
+    const currentConnector = connectorsByName[name as keyof typeof connectorsByName]
+    const activating = currentConnector === activatingConnector
+    const connected = currentConnector === connector
+
+    return { currentConnector, activating, connected }
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      return
+    }
+
+    if (wallet && typeof window !== 'undefined') {
+      const { currentConnector } = getConnectorInfo(wallet)
+      handleWalletConnection(currentConnector, wallet)()
+    }
+    // eslint-disable-next-line
+  }, [])
 
   console.log('connector', connector)
 
   return (
     <Flex sx={{ justifyContent: 'center' }}>
       {Object.keys(connectorsByName).map((name: string) => {
-        const currentConnector = connectorsByName[name as keyof typeof connectorsByName]
-        const activating = currentConnector === activatingConnector
-        const connected = currentConnector === connector
+        const { currentConnector, activating, connected } = getConnectorInfo(name)
 
         return (
           <Button
@@ -33,10 +67,7 @@ const Login = () => {
               maxWidth: 250,
             }}
             key={name}
-            onClick={() => {
-              setActivatingConnector(currentConnector)
-              activate(connectorsByName[name as keyof typeof connectorsByName] as AbstractConnector)
-            }}
+            onClick={handleWalletConnection(currentConnector, name)}
           >
             {iconsMap[name as keyof typeof connectorsByName] && (
               <Image

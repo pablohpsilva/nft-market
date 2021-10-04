@@ -9,14 +9,15 @@ import { Container } from 'theme-ui'
 function getLibrary(provider: any): Web3Provider {
   const library = new Web3Provider(provider)
   library.pollingInterval = 12000
+  console.log('library', library)
   return library
 }
 
 const Root = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <Header />
       <Web3ReactProvider getLibrary={getLibrary}>
+        <Header />
         <Connect>
           <Container>
             <Switch>

@@ -1,18 +1,6 @@
 import { FormEvent, MouseEvent, useState } from 'react'
 import { utils, BigNumber, constants } from 'ethers'
-import {
-  Spinner,
-  Box,
-  Flex,
-  Card,
-  Button,
-  Image,
-  Input,
-  Text,
-  Heading,
-  Divider,
-  NavLink,
-} from 'theme-ui'
+import { Spinner, Box, Grid, Flex, Card, Button, Image, Input, Text, NavLink } from 'theme-ui'
 import useSWR from 'swr'
 import { useAppState } from '../../state'
 import { fetcherMetadata, fetchOwner } from '../../utils/fetchers'
@@ -74,6 +62,7 @@ export const TokenPretty = ({
   const { data } = useSWR(`${METADATA_API}/token/${token.id}`, fetcherMetadata)
 
   const tokenPriceEth = formatPriceEth(token.price, ethPrice)
+  console.log({ tokenPriceEth, contractDetails, constants })
 
   if (!data)
     return (
@@ -86,52 +75,40 @@ export const TokenPretty = ({
 
   return (
     <Card variant="nft">
-      <Image
-        sx={{ width: '100%', bg: 'white', borderBottom: '1px solid black' }}
-        src={data.image}
-      />
-      <Box p={3} pt={2}>
-        <Heading as="h2">{data.name}</Heading>
-        <Divider variant="divider.nft" />
-        <Box>
-          <Text sx={{ color: 'lightBlue', fontSize: 1, fontWeight: 'bold' }}>Price</Text>
-          <Heading as="h3" sx={{ color: 'green', m: 0, fontWeight: 'bold' }}>
-            {constants.EtherSymbol} {Number(utils.formatEther(token.price)).toFixed(2)}{' '}
-            <Text sx={{ color: 'navy' }} as="span" variant="text.body">
-              ({tokenPriceEth})
-            </Text>
-          </Heading>
-          {owner && typeof owner === 'string' && !onTransfer && (
-            <Box mt={2}>
-              <Text as="p" sx={{ color: 'lightBlue', fontSize: 1, fontWeight: 'bold' }}>
-                Owner
-              </Text>
-              <NavLink
-                target="_blank"
-                href={`https://rinkeby.etherscan.io/address/${owner}`}
-                variant="owner"
-                style={{
-                  textOverflow: 'ellipsis',
-                  width: '100%',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-              >
-                {toShort(owner)}
-              </NavLink>
-            </Box>
-          )}
-          <Box mt={2}>
-            <NavLink
-              target="_blank"
-              href={`https://testnets.opensea.io/assets/${contractDetails?.address}/${token.id}`}
-              variant="openSea"
-            >
-              View on Opensea.io
-            </NavLink>
-          </Box>
-        </Box>
+      <Image sx={{ width: '100%', bg: 'white' }} src={data.image} />
 
+      <Grid gap={2} columns="6fr 6fr" sx={{ alignItems: 'center' }} pt={2}>
+        <Flex sx={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+          <NavLink
+            target="_blank"
+            href={`https://rinkeby.etherscan.io/address/${owner}`}
+            variant="owner"
+            style={{
+              textOverflow: 'ellipsis',
+              width: '100%',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            {owner ? toShort(owner) : null}
+          </NavLink>
+          <Text sx={{ fontSize: 2, fontWeight: 'bold' }}>{data.name}</Text>
+        </Flex>
+
+        <Flex sx={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+          <Text sx={{ color: 'concrete30', fontSize: 1, fontWeight: 'bold' }}>Price</Text>
+          <Text sx={{ color: 'graphite', fontSize: 2, fontWeight: 'bold' }}>
+            {/* {constants.EtherSymbol} {Number(utils.formatEther(token.price)).toFixed(2)} */}
+            <Image
+              sx={{ width: 12, height: 12 }}
+              src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg"
+            />
+            {Number(utils.formatEther(token.price)).toFixed(2)}
+          </Text>
+        </Flex>
+      </Grid>
+
+      <Box pb={2}>
         {onTransfer && (
           <Flex mt={3} sx={{ justifyContent: 'center' }}>
             {transfer && (
@@ -161,6 +138,7 @@ export const TokenPretty = ({
                 </Flex>
               </Box>
             )}
+
             {onSaleActive && (
               <Box sx={{ width: '100%' }}>
                 <Flex
@@ -188,6 +166,7 @@ export const TokenPretty = ({
                 </Flex>
               </Box>
             )}
+
             {!transfer && !onSaleActive && (
               <Flex sx={{ flexDirection: 'column', width: '100%', justifyContent: 'center' }}>
                 <Button onClick={() => setTransfer(!transfer)} variant="tertiary">
@@ -210,8 +189,9 @@ export const TokenPretty = ({
             )}
           </Flex>
         )}
+
         {onBuy && (
-          <Flex mt={3} sx={{ justifyContent: 'center', width: '100%' }}>
+          <Flex mt={3} sx={{ width: '100%' }}>
             <Button
               sx={{
                 opacity: !!user?.ownedTokens.find(

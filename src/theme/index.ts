@@ -45,9 +45,19 @@ export const Palette = {
   aqua: '#2BCDE4',
   graphite: '#04111e',
   concrete: '#434d55',
+  concrete30: 'rgba(67, 77, 85, .30)',
 }
 
 export type PaletteKeys = keyof typeof Palette
+
+export const Shadows = {
+  simple: 'rgb(4 17 29 / 25%) 0px 0px 8px 0px'
+}
+
+export const Transitions = {
+  timing: '.3s',
+  easeAll: 'all ease .3s'
+}
 
 export const Sizes = {
   header: 60,
@@ -78,10 +88,16 @@ export default {
   },
   cards: {
     nft: {
-      bg: 'background',
+      bg: 'transparent',
       border: '1px solid',
-      borderColor: 'muted',
+      borderColor: 'concrete30',
       textAlign: 'left',
+      borderRadius: 4,
+      padding: 2,
+      '&:hover': {
+        boxShadow: Shadows.simple,
+        transition: Transitions.easeAll
+      }
     },
     transaction: {
       bg: 'amber',
@@ -117,17 +133,15 @@ export default {
       },
     },
     owner: {
-      color: 'white',
+      color: 'concrete30',
       fontSize: 1,
-      opacity: 0.5,
       transition: 'all .2s ease-out',
+      fontWeight: 400,
       '&:hover': {
-        opacity: 1,
-        color: 'white',
+        opacity: 0.5,
       },
       '&:after': {
         content: `url("data:image/svg+xml,%3Csvg width='8' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.262 0l2.529 2.524L0 6.314 1.685 8l3.79-3.79L8 6.732V0z' fill='white' fill-rule='nonzero' /%3E%3C/svg%3E")`,
-        ml: 1,
       },
     },
   },
@@ -158,10 +172,17 @@ export default {
     },
     quartiary: {
       variant: 'buttons.tertiary',
-      bg: 'green',
-      color: 'black',
+      bg: 'blueSea',
+      color: 'white',
       minWidth: 'auto',
       py: 2,
+    },
+    quartiaryOutlined: {
+      variant: 'buttons.quartiary',
+      bg: 'transparent',
+      color: 'blueSea',
+      border: '1px solid',
+      borderColor: 'blueSea',
     },
     filter: {
       variant: 'buttons.tertiary',
@@ -197,6 +218,9 @@ export default {
   },
   colors: {
     ...Palette,
+  },
+  shadows: {
+    ...Shadows
   },
   divider: {
     nft: {

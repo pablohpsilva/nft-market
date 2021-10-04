@@ -23,7 +23,7 @@ const Gallery = () => {
     <Box>
       <Heading as="h1">Marketplace</Heading>
       <Flex sx={{ alignItems: 'center' }} mb={3}>
-        <Heading as="h3" sx={{ color: 'lightGray' }}>
+        <Heading as="h3" sx={{ color: 'concrete' }}>
           Order:
         </Heading>
         <Flex ml={3}>

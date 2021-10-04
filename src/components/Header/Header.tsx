@@ -14,7 +14,7 @@ const Header = () => {
   const { user, isAuthenticated } = useAppState()
 
   return (
-    <Box bg="fog" sx={{ boxShadow: 'rgb(4 17 29 / 25%) 0px 0px 8px 0px' }}>
+    <Box bg="fog" sx={{ boxShadow: 'simple' }}>
       <Flex sx={{ alignItems: 'center', p: 3 }} as="nav">
         <Image
           onClick={() => {

@@ -4,6 +4,7 @@ import { BigNumber, Contract, utils, Event } from 'ethers'
 
 import { TokenProps } from '../components/Token'
 import { ContractPropsDetails, UserProps } from '../types'
+import { getWindow } from '../utils'
 export interface StateContext {
   isAuthenticated: boolean
   contract?: Contract
@@ -14,6 +15,7 @@ export interface StateContext {
   activatingConnector?: any
   transaction?: any
   library?: any
+  wallet?: any
 
   setAuthenticated(authenticated: boolean): void
   setContract(library: any, chainId: number): void
@@ -28,6 +30,8 @@ export interface StateContext {
   setTokenSale(id: string, price: BigNumber, onSale: boolean): Promise<boolean>
   transferToken(id: string, to: string): void
   getUserTokens(address?: string): Promise<TokenProps[]>
+  setWallet(wallet?: string): void
+  disconnect(): void
 }
 
 const useAppState = create<StateContext>((set, get) => ({
@@ -38,6 +42,7 @@ const useAppState = create<StateContext>((set, get) => ({
   ethPrice: '0.0',
   activatingConnector: undefined,
   transaction: undefined,
+  wallet: getWindow()?.localStorage?.getItem('wallet') ?? '',
 
   setAuthenticated: (authenticated: boolean) => set({ isAuthenticated: authenticated }),
   setContract: async (library: any, chainId: number) => {
@@ -101,8 +106,7 @@ const useAppState = create<StateContext>((set, get) => ({
   },
   setTokensOnSale: (tokensOnSale: TokenProps[]) => set({ tokensOnSale: tokensOnSale }),
   setEthPrice: (ethPrice: string) => set({ ethPrice: ethPrice }),
-  setActivatingConnector: (activatingConnector: any) =>
-    set({ activatingConnector: activatingConnector }),
+  setActivatingConnector: (activatingConnector: any) => set({ activatingConnector }),
   setTransaction: (transaction: any) => set({ transaction: transaction }),
 
   //
@@ -206,6 +210,13 @@ const useAppState = create<StateContext>((set, get) => ({
     } catch (e) {
       console.log(e)
     }
+  },
+  setWallet: (wallet: string) => {
+    set({ wallet })
+    getWindow()?.localStorage?.setItem('wallet', wallet)
+  },
+  disconnect: () => {
+    getWindow()?.localStorage?.clear?.()
   },
 }))
 

@@ -12,6 +12,7 @@ const iconsMap = {
 const Login = () => {
   const { activatingConnector, setActivatingConnector } = useAppState()
   const { connector, activate } = useWeb3React()
+
   return (
     <Flex sx={{ justifyContent: 'center' }}>
       {Object.keys(connectorsByName).map((name: string) => {

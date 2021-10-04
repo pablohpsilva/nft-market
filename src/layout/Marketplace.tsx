@@ -4,7 +4,20 @@ import { useAppState } from '../state'
 
 const Marketplace = () => {
   const { user } = useAppState()
-  const { active } = useWeb3React()
+  const { active, library, activate, deactivate, setError, account, chainId, connector, error } =
+    useWeb3React()
+
+  console.log({
+    active,
+    library,
+    activate,
+    deactivate,
+    setError,
+    account,
+    chainId,
+    connector,
+    error,
+  })
 
   return (
     <>

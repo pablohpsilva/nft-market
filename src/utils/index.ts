@@ -5,3 +5,4 @@ export const METADATA_API = REACT_APP_SERVICE_URL || ''
 
 export * from './toShort'
 export * from './formatPriceEth'
+export * from './window'
